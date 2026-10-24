@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PackageId>WinToAws</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>VENKATESHWAR REDDY VURUMALLA</Authors>
+    <Company>VENKATESHWAR REDDY VURUMALLA</Company>
+    <Copyright>Copyright (c) 2026 VENKATESHWAR REDDY VURUMALLA</Copyright>
+    <Description>Move a Windows / .NET application to AWS by adding one library: analyse blockers, score AWS readiness, and generate a Dockerfile, an AWS CloudFormation template, a deployment script, and a migration report.</Description>
+    <PackageTags>aws;migration;windows;dotnet;docker;cloudformation;modernization</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/vurumalla92/wintoaws-migrator</RepositoryUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+</Project>
