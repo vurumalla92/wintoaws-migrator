@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7D52287A-3A8F-4A36-9D42-6266D93A9E63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinToAws", "src\WinToAws\WinToAws.csproj", "{6F64FAAD-A105-433F-9645-3BE1BC9CDC13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinToAws.Cli", "src\WinToAws.Cli\WinToAws.Cli.csproj", "{943510A5-DA03-4693-8D91-DA3161925F26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D723A946-7FBC-4CC3-ADA3-A1FF8FBE66F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinToAws.Tests", "tests\WinToAws.Tests\WinToAws.Tests.csproj", "{CA5720FD-2B6C-4393-A8F9-40924C916852}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F64FAAD-A105-433F-9645-3BE1BC9CDC13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F64FAAD-A105-433F-9645-3BE1BC9CDC13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F64FAAD-A105-433F-9645-3BE1BC9CDC13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F64FAAD-A105-433F-9645-3BE1BC9CDC13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{943510A5-DA03-4693-8D91-DA3161925F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{943510A5-DA03-4693-8D91-DA3161925F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{943510A5-DA03-4693-8D91-DA3161925F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{943510A5-DA03-4693-8D91-DA3161925F26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA5720FD-2B6C-4393-A8F9-40924C916852}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA5720FD-2B6C-4393-A8F9-40924C916852}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA5720FD-2B6C-4393-A8F9-40924C916852}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA5720FD-2B6C-4393-A8F9-40924C916852}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6F64FAAD-A105-433F-9645-3BE1BC9CDC13} = {7D52287A-3A8F-4A36-9D42-6266D93A9E63}
+		{943510A5-DA03-4693-8D91-DA3161925F26} = {7D52287A-3A8F-4A36-9D42-6266D93A9E63}
+		{CA5720FD-2B6C-4393-A8F9-40924C916852} = {D723A946-7FBC-4CC3-ADA3-A1FF8FBE66F9}
+	EndGlobalSection
+EndGlobal
