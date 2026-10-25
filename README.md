@@ -1,6 +1,8 @@
-# WinToAws
+# WinToAws — Windows Migrator Tool
 
 **Move a Windows / .NET application to AWS by adding one library.**
+
+WinToAws is a Windows migrator tool: point it at a Windows application, and it tells you exactly what will block the move to Amazon Web Services, how ready the application is, and what to do next. It analyses desktop UI, Registry, COM, hard-coded Windows paths, Windows Integrated Security, .NET Framework, WCF, and more, scores AWS readiness from 0–100, recommends rehosting on Windows containers or replatforming to Linux containers, and generates a Dockerfile, an AWS CloudFormation template, a deployment script, and a migration report — so a team can move a working Windows application to the cloud without rewriting it first.
 
 WinToAws analyses a Windows application folder, finds the things that will block a move to AWS (desktop UI, Registry, COM, hard-coded Windows paths, Windows Integrated Security, .NET Framework, WCF, and more), scores its AWS readiness from 0–100, recommends a strategy (rehost on Windows containers, or replatform to Linux containers on Amazon ECS Fargate), and generates the artefacts you need to actually move: a Dockerfile, an AWS CloudFormation template (ECS + optional Amazon RDS for SQL Server), a PowerShell deployment script, and a migration report.
 
@@ -58,7 +60,7 @@ Running against the included sample (`samples/LegacySampleApp`, a .NET Framework
 
 ```
 App: LegacySampleApp
-Readiness: 6/100 - Major rework
+Readiness: 5/100 - Major rework
 Strategy: Rehost on Windows containers (Amazon ECS on EC2) first, then refactor the UI to web in a later phase
 Blockers: 3  Warnings: 4
 ```
