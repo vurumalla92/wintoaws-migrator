@@ -11,6 +11,60 @@ Author: **VENKATESHWAR REDDY VURUMALLA**
 Repository: https://github.com/vurumalla92/wintoaws-migrator
 License: MIT
 
+[![CI](https://github.com/vurumalla92/wintoaws-migrator/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/vurumalla92/wintoaws-migrator/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/vurumalla92/wintoaws-migrator)](https://github.com/vurumalla92/wintoaws-migrator/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+## Try it in under five minutes
+
+**Want to evaluate it first?** Download the [latest release and CLI packages](https://github.com/vurumalla92/wintoaws-migrator/releases/latest), or install the library/CLI from NuGet.
+
+### Option 1 — install the CLI
+
+```bash
+dotnet tool install -g WinToAws.Cli
+wintoaws --help
+```
+
+If the global tool is already installed, update it with:
+
+```bash
+dotnet tool update -g WinToAws.Cli
+```
+
+### Option 2 — add the library to a .NET project
+
+```bash
+dotnet add package WinToAws
+```
+
+Then analyze a folder and generate a report plus starter AWS deployment files:
+
+```csharp
+using WinToAws;
+
+var report = Migrator.Analyze(@"C:\\Path\\To\\YourApp");
+Console.WriteLine($"{report.ReadinessScore}/100 - {report.ReadinessLabel}");
+
+var result = Migrator.Generate(
+    @"C:\\Path\\To\\YourApp",
+    @"C:\\Path\\To\\YourApp\\aws-output",
+    region: "us-east-1");
+
+foreach (var file in result.Files)
+    Console.WriteLine($"Generated: {file}");
+```
+
+**Important:** generated CloudFormation and deployment files are starting points, not a guarantee of production readiness. Review IAM permissions, networking, logging, secrets, backups, and costs; test in a non-production AWS account before deploying.
+
+### If you find it useful
+
+- Give the project a GitHub star so other .NET/AWS developers can discover it.
+- Found a bug? [Open a bug report](https://github.com/vurumalla92/wintoaws-migrator/issues/new?template=bug_report.yml).
+- Have an idea or rule to add? [Request a feature](https://github.com/vurumalla92/wintoaws-migrator/issues/new?template=feature_request.yml) or see [CONTRIBUTING.md](CONTRIBUTING.md).
+- Share a reproducible example or migration scenario in a discussion or issue. Please remove secrets and proprietary code.
+
+
 ## Install — the library (the way most people will use it)
 
 ```bash
