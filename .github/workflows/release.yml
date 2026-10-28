@@ -32,10 +32,14 @@ jobs:
         run: dotnet test tests/WinToAws.Tests/WinToAws.Tests.csproj --configuration Release --no-build
 
       - name: Pack NuGet packages
+        env:
+          REF_NAME: ${{ github.ref_name }}
+          RUN_NUMBER: ${{ github.run_number }}
         run: |
           mkdir -p artifacts/packages artifacts/cli
-          dotnet pack src/WinToAws/WinToAws.csproj --configuration Release --no-build --output artifacts/packages
-          dotnet pack src/WinToAws.Cli/WinToAws.Cli.csproj --configuration Release --no-build --output artifacts/packages
+          if [[ "$REF_NAME" == v* ]]; then VERSION="${REF_NAME#v}"; else VERSION="0.0.0-manual.$RUN_NUMBER"; fi
+          dotnet pack src/WinToAws/WinToAws.csproj --configuration Release --no-build --output artifacts/packages -p:Version="$VERSION"
+          dotnet pack src/WinToAws.Cli/WinToAws.Cli.csproj --configuration Release --no-build --output artifacts/packages -p:Version="$VERSION"
 
       - name: Publish CLI
         run: dotnet publish src/WinToAws.Cli/WinToAws.Cli.csproj --configuration Release --no-build --output artifacts/cli
