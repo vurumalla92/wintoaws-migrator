@@ -43,7 +43,7 @@ jobs:
       - name: Create portable CLI archive and checksums
         run: |
           cd artifacts
-          zip -r WinToAws-cli-\${GITHUB_REF_NAME}.zip cli
+          zip -r WinToAws-cli-${GITHUB_REF_NAME}.zip cli
           sha256sum packages/* WinToAws-cli-*.zip > SHA256SUMS.txt
           ls -lh packages WinToAws-cli-*.zip SHA256SUMS.txt
 
