@@ -1,0 +1,62 @@
+name: Bug report
+description: Report a reproducible problem with WinToAws.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve WinToAws. Please do not include credentials, connection strings, private source code, or other secrets.
+  - type: input
+    id: version
+    attributes:
+      label: WinToAws version
+      description: CLI/package version or commit SHA.
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: dotnet
+    attributes:
+      label: .NET SDK/runtime version
+      placeholder: "dotnet --info"
+    validations:
+      required: true
+  - type: dropdown
+    id: command
+    attributes:
+      label: Command used
+      options:
+        - "wintoaws analyze"
+        - "wintoaws generate"
+        - "Library API"
+        - "Build or test"
+        - "Other"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Use a minimal example or synthetic sample. Remove secrets and proprietary source.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs or findings
+      render: text
+    validations:
+      required: false
