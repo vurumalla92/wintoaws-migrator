@@ -62,4 +62,36 @@ public class MigratorTests
     {
         Assert.Throws<DirectoryNotFoundException>(() => Migrator.Analyze("/definitely/not/a/real/folder"));
     }
+    [Fact]
+    public void EmptyFolderReturnsReadyWithNoFindings()
+    {
+        var dir = Path.Combine(Path.GetTempPath(), "wintoaws-empty-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(dir);
+
+        var report = Migrator.Analyze(dir);
+
+        Assert.Equal(0, report.FileCount);
+        Assert.Empty(report.Findings);
+        Assert.Equal(100, report.ReadinessScore);
+        Assert.Equal("Ready", report.ReadinessLabel);
+    }
+
+    [Fact]
+    public void IgnoresGeneratedBuildDirectories()
+    {
+        var dir = Path.Combine(Path.GetTempPath(), "wintoaws-skip-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(dir, "bin", "Debug"));
+        Directory.CreateDirectory(Path.Combine(dir, "obj", "Debug"));
+        File.WriteAllText(Path.Combine(dir, "bin", "Debug", "Generated.cs"),
+            "using System.Windows.Forms; class Generated { Form f = new Form(); }");
+        File.WriteAllText(Path.Combine(dir, "obj", "Debug", "Generated.cs"),
+            "using Microsoft.Win32; class Generated { object key = Registry.LocalMachine; }");
+
+        var report = Migrator.Analyze(dir);
+
+        Assert.Equal(0, report.FileCount);
+        Assert.Empty(report.Findings);
+        Assert.Equal(100, report.ReadinessScore);
+    }
+
 }
