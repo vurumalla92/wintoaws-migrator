@@ -1,0 +1,68 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Build, test, and package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore WinToAws.sln
+
+      - name: Build
+        run: dotnet build WinToAws.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test tests/WinToAws.Tests/WinToAws.Tests.csproj --configuration Release --no-build
+
+      - name: Pack NuGet packages
+        run: |
+          mkdir -p artifacts/packages artifacts/cli
+          dotnet pack src/WinToAws/WinToAws.csproj --configuration Release --no-build --output artifacts/packages
+          dotnet pack src/WinToAws.Cli/WinToAws.Cli.csproj --configuration Release --no-build --output artifacts/packages
+
+      - name: Publish CLI
+        run: dotnet publish src/WinToAws.Cli/WinToAws.Cli.csproj --configuration Release --no-build --output artifacts/cli
+
+      - name: Create portable CLI archive and checksums
+        run: |
+          cd artifacts
+          zip -r WinToAws-cli-\${GITHUB_REF_NAME}.zip cli
+          sha256sum packages/* WinToAws-cli-*.zip > SHA256SUMS.txt
+          ls -lh packages WinToAws-cli-*.zip SHA256SUMS.txt
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: WinToAws-release-assets
+          path: |
+            artifacts/packages/*.nupkg
+            artifacts/WinToAws-cli-*.zip
+            artifacts/SHA256SUMS.txt
+          if-no-files-found: error
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            artifacts/packages/*.nupkg
+            artifacts/WinToAws-cli-*.zip
+            artifacts/SHA256SUMS.txt
