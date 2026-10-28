@@ -43,12 +43,12 @@ Then analyze a folder and generate a report plus starter AWS deployment files:
 ```csharp
 using WinToAws;
 
-var report = Migrator.Analyze(@"C:\\Path\\To\\YourApp");
+var report = Migrator.Analyze(@"C:\Path\To\YourApp");
 Console.WriteLine($"{report.ReadinessScore}/100 - {report.ReadinessLabel}");
 
 var result = Migrator.Generate(
-    @"C:\\Path\\To\\YourApp",
-    @"C:\\Path\\To\\YourApp\\aws-output",
+    @"C:\Path\To\YourApp",
+    @"C:\Path\To\YourApp\aws-output",
     region: "us-east-1");
 
 foreach (var file in result.Files)
